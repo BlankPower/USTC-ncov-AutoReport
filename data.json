@@ -8,7 +8,7 @@
     "now_country":"340104",
     "gps_country":"",
     "now_detail": "",
-    "is_inschool": "4",
+    "is_inschool": "10",
     "body_condition": "1",
     "body_condition_detail": "",
     "now_status": "1",
@@ -19,8 +19,8 @@
     "last_touch_sars_detail": "",
     "is_danger":"0",
     "is_goto_danger":"0",
-    "jinji_lxr": "Yichang Xu",
-    "jinji_guanxi": "self",
-    "jiji_mobile": "13233131808",
+    "jinji_lxr": "",
+    "jinji_guanxi": "",
+    "jiji_mobile": "",
     "other_detail": ""
 }
