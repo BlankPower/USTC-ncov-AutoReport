@@ -7,9 +7,12 @@ import json
 import pytz
 from ustclogin import Login
 class Report(object):
-    def __init__(self, stuid, password, data_path):
+    def __init__(self, stuid, password, lxr, guanxi, mobile, data_path):
         self.stuid = stuid
         self.password = password
+        self.lxr = lxr
+        self.guanxi = guanxi
+        self.mobile = mobile
         self.data_path = data_path
 
     def report(self):
@@ -24,6 +27,9 @@ class Report(object):
                 data = f.read()
                 data = json.loads(data)
                 data["_token"]=token
+                data["jinji_lxr"]=self.lxr
+                data["jinji_guanxi"]=self.guanxi
+                data["jiji_mobile"]=self.mobile
             headers = {
                 'authority': 'weixine.ustc.edu.cn',
                 'origin': 'https://weixine.ustc.edu.cn',
@@ -69,8 +75,13 @@ if __name__ == "__main__":
     parser.add_argument('data_path', help='path to your own data used for post method', type=str)
     parser.add_argument('stuid', help='your student number', type=str)
     parser.add_argument('password', help='your CAS password', type=str)
+    parser.add_argument('lxr', help='emergency contactor', type=str)
+    parser.add_argument('guanxi', help='relationship of contactor', type=str)
+    parser.add_argument('mobile', help='contactor no mobile', type=str)
     args = parser.parse_args()
-    autorepoter = Report(stuid=args.stuid, password=args.password, data_path=args.data_path)
+
+    autorepoter = Report(stuid=args.stuid, password=args.password, lxr=args.lxr, guanxi=args.guanxi, 
+                        mobile=args.mobile, data_path=args.data_path)
     count = 5
     while count != 0:
         ret = autorepoter.report()

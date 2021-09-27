@@ -29,5 +29,8 @@ jobs:
       env:
         STUID: ${{ secrets.Stuid }}
         PASSWORD: ${{ secrets.Password }}
+        LXR: ${{ secrets.Lxr }}
+        GUANXI: ${{ secrets.Guanxi }}
+        MOBILE: ${{ secrets.Mobile }}
       run: |
-        python report.py data.json "$STUID" "$PASSWORD"
+        python report.py data.json "$STUID" "$PASSWORD" "$LXR" "$GUANXI" "MOBILE"
