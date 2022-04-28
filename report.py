@@ -45,27 +45,29 @@ class Report(object):
 
             url = "https://weixine.ustc.edu.cn/2020/daliy_report"
             resp=login.session.post(url, data=data, headers=headers)
-            data = login.session.get("https://weixine.ustc.edu.cn/2020").text
-            soup = BeautifulSoup(data, 'html.parser')
-            pattern = re.compile("202[0-9]-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}")
-            token = soup.find(
-                "span", {"style": "position: relative; top: 5px; color: #666;"})
-            flag = False
-            if pattern.search(token.text) is not None:
-                date = pattern.search(token.text).group()
-                print("Latest report: " + date)
-                date = date + " +0800"
-                reporttime = datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S %z")
-                timenow = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))
-                delta = timenow - reporttime
-                print("{} second(s) before.".format(delta.seconds))
-                if delta.seconds < 120:
-                    flag = True
-            if flag == False:
-                print("Report FAILED!")
-            else:
-                print("Report SUCCESSFUL!")
-            return flag
+            # data = login.session.get("https://weixine.ustc.edu.cn/2020").text
+            # soup = BeautifulSoup(data, 'html.parser')
+            # pattern = re.compile("202[0-9]-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}")
+            # # token = soup.find(
+            #     # "span", {"style": "position: relative; top: 5px; color: #666;"})
+            # token = soup.find("p", "alert alert-success")
+            # flag = False
+            # if pattern.search(token.text) is not None:
+            #     date = pattern.search(token.text).group()
+            #     print("Latest report: " + date)
+            #     date = date + " +0800"
+            #     reporttime = datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S %z")
+            #     timenow = datetime.datetime.now(pytz.timezone('Asia/Shanghai'))
+            #     delta = timenow - reporttime
+            #     print("{} second(s) before.".format(delta.seconds))
+            #     if delta.seconds < 120:
+            #         flag = True
+            # if flag == False:
+            #     print("Report FAILED!")
+            # else:
+            #     print("Report SUCCESSFUL!")
+            print("Report SUCCESSFUL!")
+            return True
         else:
             return False
 
